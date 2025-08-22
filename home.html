@@ -26,11 +26,11 @@
         <h1 class="text-2xl font-bold">🔥 Welcome to Payooo!</h1>
         <p class="text-[#08080880] mt-3 font-semibold">Enjoy easy and convenient financial services with us. Cashout charge is low and </p>
         <div class="mt-6 min-h-[200px] grid grid-cols-3 gap-4">
-            <div class="border-2 border-[#0808081a] text-center items-center py-[20px] px-[26px] rounded-2xl">
+            <div id="add-money-button" class="border-2 border-[#0808081a] text-center items-center py-[20px] px-[26px] rounded-2xl">
                 <img src="assets/wallet1.png" class="mx-auto" alt="">
                 <h2 class="text-[#080808b3] text-[14px] font-semibold mt-2">Add Money</h2>
             </div>
-            <div class="border-2 border-[#0808081a] text-center items-center py-[20px] px-[26px] rounded-2xl">
+            <div id="cash-out-button" class="border-2 border-[#0808081a] text-center items-center py-[20px] px-[26px] rounded-2xl">
                 <img src="assets/send1.png" class="mx-auto" alt="">
                 <h2 class="text-[#080808b3] text-[14px] font-semibold mt-2">Cash Out</h2>
             </div>
@@ -54,13 +54,13 @@
     </div>
 
     <div class="all-form-section mt-[30px] max-w-lg mx-auto px-[24px] border-2 border-[#f4f5f7]">
-        <div class=" mb-[120px]">
+        <div class="mb-[120px]" style="display: none;" id="add-money-parent">
             <h1 class="font-bold text-[18px] mb-4">Add Money</h1>
             <form class="bg-white p-6 rounded-3xl ">
                 <div>
                     <label for="" class="font-semibold">Select A Bank</label>
                     <br>
-                    <select placeholder="Enter 4 Digit Pin" class="select mt-[12px] rounded-4xl bg-[#f4f5f7] border-0 w-full" id="bank">
+                    <select placeholder="Enter 4 Digit Pin" class="select mt-[12px] rounded-4xl bg-[#f4f5f7] border-0 w-full " id="bank">
                         <option disabled selected>Select Bank</option>
                         <option>City Bank</option>
                         <option>IFIC Bank</option>
@@ -70,12 +70,12 @@
                 <div class="mt-[12px]">
                     <label for="" class="font-semibold">Bank Account Number</label>
                     <br>
-                    <input type="text" placeholder="Enter 11 digit account number" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="account-number" />
+                    <input type="text" required placeholder="Enter 11 digit account number" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="account-number" />
                 </div>
                 <div class="mt-[12px]">
                     <label for="" class="font-semibold">Amount to Add</label>
                     <br>
-                    <input type="text" placeholder="Add Amount to withdraw" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="add-amount" />
+                    <input type="text" required placeholder="Add Amount to withdraw" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="add-amount" />
                 </div>
                 <div class="mt-[12px]">
                     <label for="" class="font-semibold">Pin Number</label>
@@ -83,6 +83,29 @@
                     <input type="text" placeholder="Enter 4 digit pin number" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="add-pin"/>
                 </div>
                 <button class="btn btn-primary mt-4 py-[14px]  w-full rounded-4xl bg-[#0874f2] font-semibold text-[20px]" id="btn-add-money">Add Money</button>
+            </form>
+        </div>
+
+        <div class="mb-[120px]" style="display: none;" id="cash-out-parent">
+            <h1 class="font-bold text-[18px] mb-4">Cash Out</h1>
+            <form class="bg-white p-6 rounded-3xl ">
+                
+                <div class="mt-[12px]">
+                    <label for="" class="font-semibold">Agent Number</label>
+                    <br>
+                    <input type="text" required placeholder="Enter 11 digit number" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="agent-number" />
+                </div>
+                <div class="mt-[12px]">
+                    <label for="" class="font-semibold">Amount</label>
+                    <br>
+                    <input type="text" required placeholder="Add Amount to withdraw" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="cash-out-amount" />
+                </div>
+                <div class="mt-[12px]">
+                    <label for="" class="font-semibold">Pin Number</label>
+                    <br>
+                    <input type="text" placeholder="Enter 4 digit pin number" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="pin-for-cashout"/>
+                </div>
+                <button class="btn btn-primary mt-4 py-[14px]  w-full rounded-4xl bg-[#0874f2] font-semibold text-[20px]" id="btn-cash-out">Withdraw Money</button>
             </form>
         </div>
     </div>
