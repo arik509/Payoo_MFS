@@ -1,3 +1,5 @@
+const transactionData = [];
+
 function getParseInnerValue(id){
     const getElement = document.getElementById(id)
     const getValue = getElement.value;
@@ -52,6 +54,8 @@ function toggleStyle(id){
     document.getElementById(id).classList.remove("border-[#0808081a]");
 }
 
+//Add Money section
+
 document.getElementById('btn-add-money').addEventListener('click',function(e){
     e.preventDefault();
     const bank = getInnerValue('bank');
@@ -65,8 +69,9 @@ document.getElementById('btn-add-money').addEventListener('click',function(e){
         return;
     }
 
-    if(amount < 500){
-        alert('Minimum amount to add is 500');
+    if(amount <= 0){
+        alert('Invalid Amount');
+        return;
     }
 
     if(pin != validPin){
@@ -78,6 +83,13 @@ document.getElementById('btn-add-money').addEventListener('click',function(e){
 
     const totalNewBalance = amount+availableBalance;
     setBalance(totalNewBalance);
+
+    const data = {
+        name: "Add Money",
+        date: new Date().toLocaleTimeString()
+    }
+
+    transactionData.push(data)
 })
 
 
@@ -90,13 +102,15 @@ document.getElementById('btn-cash-out').addEventListener('click',function(e){
     const pin = getParseInnerValue('pin-for-cashout');
     const validPin = 1234;
 
+    const availableBalance = getParseInnerText('available-balance');
+    
     if(agentNumber.length < 11){
         alert('Please Provide a valid agent number');
         return;
     }
 
-    if(amount < 500){
-        alert('Minimum amount to add is 500');
+    if(amount <=0 || amount >availableBalance){
+        alert('Invalid amount');
     }
 
     if(pin != validPin){
@@ -104,12 +118,18 @@ document.getElementById('btn-cash-out').addEventListener('click',function(e){
         return;
     }
 
-    const availableBalance = getParseInnerText('available-balance');
+    
 
     const totalNewBalance = availableBalance-amount;
 
-    
     setBalance(totalNewBalance);
+
+    const data = {
+        name: "Cash Out",
+        date: new Date().toLocaleTimeString()
+    }
+
+    transactionData.push(data)
 })
 
 
@@ -140,8 +160,14 @@ document.getElementById('btn-transfer').addEventListener('click',function(e){
 
     const totalNewBalance = availableBalance-amount;
 
-    
     setBalance(totalNewBalance);
+
+    const data = {
+        name: "Money Transfer",
+        date: new Date().toLocaleTimeString()
+    }
+
+    transactionData.push(data)
 })
 
 //Get Bonus Section
@@ -151,10 +177,13 @@ document.getElementById('btn-bonus').addEventListener('click',function(e){
     const coupon = getInnerText('bonus-coupon');
     const validCoupon = "ABC50";
 
-    if(coupon !== validCoupon){
-        alert('Please Provide a valid coupon');
-        return;
+    
+    const data = {
+        name: "Get Bonus",
+        date: new Date().toLocaleTimeString()
     }
+
+    transactionData.push(data)
 
 })
 
@@ -182,7 +211,44 @@ document.getElementById('btn-pay-money').addEventListener('click',function(e){
     const totalNewBalance = availableBalance-amount;
 
     setBalance(totalNewBalance);
+
+    const data = {
+        name: "Pay Bill",
+        date: new Date().toLocaleTimeString()
+    }
+
+    transactionData.push(data)
 })
+
+//Transaction Section
+
+document.getElementById('transaction-button').addEventListener('click',function(){
+    const transactionContainer = document.getElementById('transaction-container')
+    transactionContainer.innerText = ""
+    
+
+    for(const data of transactionData){
+        const div = document.createElement("div")
+        div.innerHTML=`
+        <div class="flex justify-between items-center mt-3 gap-2 bg-white p-4 rounded-[12px]">
+                <div class="flex gap-2 ">
+                    <div class="p-3 rounded-full bg-[#0808080d]">
+                        <img src="assets/wallet1.png" alt="">
+                    </div>
+                    <div>
+                        <h1 class="text-[#080808b3] font-bold">${data.name}</h1>
+                        <p class="text-[#080808b3]">Today ${data.date}</p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+        ` 
+
+        transactionContainer.appendChild(div)
+    
+    }
+})
+
 
 // Toggling
 
@@ -209,4 +275,9 @@ document.getElementById('get-bonus-button').addEventListener('click',function(){
 document.getElementById('pay-bill-button').addEventListener('click',function(){
     toggle('pay-bill-parent');
     toggleStyle('pay-bill-button');
+})
+
+document.getElementById('transaction-button').addEventListener('click',function(){
+    toggle('transaction-parent');
+    toggleStyle('transaction-button');
 })
