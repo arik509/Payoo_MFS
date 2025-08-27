@@ -43,7 +43,7 @@ function toggleStyle(id){
     const formBtns = document.getElementsByClassName("form-button");
     
     for(const fbtn of formBtns){
-        fbtn.classList.remove("border-[#0874f2]","bg-[#0874f20d]","text-[#0874f2]");
+        fbtn.classList.remove("border-[#0874f2]","bg-[#0874f20d]");
         fbtn.classList.add("border-[#0808081a]");
     }
 
@@ -158,19 +158,41 @@ document.getElementById('btn-bonus').addEventListener('click',function(e){
 
 })
 
+//Pay bill Section
+
+document.getElementById('btn-pay-money').addEventListener('click',function(e){
+    e.preventDefault();
+    const accountNumber = getInnerValue('account-number-pay');
+    const amount = getParseInnerValue('pay-amount');
+    const pin = getParseInnerValue('pay-pin');
+    const validPin = 1234;
+
+    if(accountNumber.length < 11){
+        alert('Please Provide a valid account number');
+        return;
+    }
+
+    if(pin != validPin){
+        alert('Please Provide a valid pin number');
+        return;
+    }
+
+    const availableBalance = getParseInnerText('available-balance');
+
+    const totalNewBalance = availableBalance-amount;
+
+    setBalance(totalNewBalance);
+})
 
 // Toggling
 
 document.getElementById('add-money-button').addEventListener('click',function(){
-    
     toggle('add-money-parent');
-
     toggleStyle('add-money-button');
 })
 
 document.getElementById('cash-out-button').addEventListener('click',function(){
     toggle('cash-out-parent');
-
     toggleStyle('cash-out-button');
 })
 
@@ -182,4 +204,9 @@ document.getElementById('transfer-money-button').addEventListener('click',functi
 document.getElementById('get-bonus-button').addEventListener('click',function(){
     toggle('get-bonus-parent');
     toggleStyle('get-bonus-button');
+})
+
+document.getElementById('pay-bill-button').addEventListener('click',function(){
+    toggle('pay-bill-parent');
+    toggleStyle('pay-bill-button');
 })
