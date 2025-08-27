@@ -18,9 +18,38 @@ function getParseInnerText(id){
     return getText;
 }
 
+function getInnerText(id){
+    const getElement = document.getElementById(id)
+    const getText = getElement.innerText;
+    return getText;
+}
+
 function setBalance(value){
     const balanceElement = document.getElementById('available-balance');
     balanceElement.innerText = value;
+}
+
+function toggle(id){
+    const forms = document.getElementsByClassName('form');
+
+    for(const form of forms){
+        form.style.display = "none";
+    }
+
+    document.getElementById(id).style.display = "block";
+}
+
+function toggleStyle(id){
+    const formBtns = document.getElementsByClassName("form-button");
+    
+    for(const fbtn of formBtns){
+        fbtn.classList.remove("border-[#0874f2]","bg-[#0874f20d]","text-[#0874f2]");
+        fbtn.classList.add("border-[#0808081a]");
+    }
+
+    document.getElementById(id).classList.add("border-[#0874f2]","bg-[#0874f20d]");
+
+    document.getElementById(id).classList.remove("border-[#0808081a]");
 }
 
 document.getElementById('btn-add-money').addEventListener('click',function(e){
@@ -115,37 +144,42 @@ document.getElementById('btn-transfer').addEventListener('click',function(e){
     setBalance(totalNewBalance);
 })
 
+//Get Bonus Section
+
+document.getElementById('btn-bonus').addEventListener('click',function(e){
+    e.preventDefault();
+    const coupon = getInnerText('bonus-coupon');
+    const validCoupon = "ABC50";
+
+    if(coupon !== validCoupon){
+        alert('Please Provide a valid coupon');
+        return;
+    }
+
+})
 
 
 // Toggling
 
 document.getElementById('add-money-button').addEventListener('click',function(){
     
-    const forms = document.getElementsByClassName('form');
+    toggle('add-money-parent');
 
-    for(const form of forms){
-        form.style.display = "none";
-    }
-
-    document.getElementById('add-money-parent').style.display = "block";
+    toggleStyle('add-money-button');
 })
 
 document.getElementById('cash-out-button').addEventListener('click',function(){
-    const forms = document.getElementsByClassName('form');
+    toggle('cash-out-parent');
 
-    for(const form of forms){
-        form.style.display = "none";
-    }
-
-    document.getElementById('cash-out-parent').style.display = "block";
+    toggleStyle('cash-out-button');
 })
 
 document.getElementById('transfer-money-button').addEventListener('click',function(){
-    const forms = document.getElementsByClassName('form');
+    toggle('transfer-money-parent');
+    toggleStyle('transfer-money-button');
+})
 
-    for(const form of forms){
-        form.style.display = "none";
-    }
-
-    document.getElementById('transfer-money-parent').style.display = "block";
+document.getElementById('get-bonus-button').addEventListener('click',function(){
+    toggle('get-bonus-parent');
+    toggleStyle('get-bonus-button');
 })
