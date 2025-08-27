@@ -34,7 +34,7 @@
                 <img src="assets/send1.png" class="mx-auto" alt="">
                 <h2 class="text-[#080808b3] text-[14px] font-semibold mt-2">Cash Out</h2>
             </div>
-            <div class="border-2 border-[#0808081a] text-center items-center py-[20px] px-[26px] rounded-2xl">
+            <div id="transfer-money-button" class="border-2 border-[#0808081a] text-center items-center py-[20px] px-[26px] rounded-2xl">
                 <img src="assets/money1.png" class="mx-auto" alt="">
                 <h2 class="text-[#080808b3] text-[14px] font-semibold mt-2">Transfer Money</h2>
             </div>
@@ -54,7 +54,7 @@
     </div>
 
     <div class="all-form-section mt-[30px] max-w-lg mx-auto px-[24px] border-2 border-[#f4f5f7]">
-        <div class="mb-[120px]" style="display: none;" id="add-money-parent">
+        <div class="mb-[120px] form" style="display: none;" id="add-money-parent">
             <h1 class="font-bold text-[18px] mb-4">Add Money</h1>
             <form class="bg-white p-6 rounded-3xl ">
                 <div>
@@ -86,7 +86,7 @@
             </form>
         </div>
 
-        <div class="mb-[120px]" style="display: none;" id="cash-out-parent">
+        <div class="mb-[120px] form" style="display: none;" id="cash-out-parent">
             <h1 class="font-bold text-[18px] mb-4">Cash Out</h1>
             <form class="bg-white p-6 rounded-3xl ">
                 
@@ -106,6 +106,41 @@
                     <input type="text" placeholder="Enter 4 digit pin number" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="pin-for-cashout"/>
                 </div>
                 <button class="btn btn-primary mt-4 py-[14px]  w-full rounded-4xl bg-[#0874f2] font-semibold text-[20px]" id="btn-cash-out">Withdraw Money</button>
+            </form>
+        </div>
+
+        <div class="mb-[120px] form"  id="transfer-money-parent">
+            <h1 class="font-bold text-[18px] mb-4">Transfer Money</h1>
+            <form class="bg-white p-6 rounded-3xl ">
+                
+                <div class="mt-[12px]">
+                    <label for="" class="font-semibold">User Account Number</label>
+                    <br>
+                    <input type="text" required placeholder="Enter 11 digit number" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="account-number-trans" />
+                </div>
+                <div class="mt-[12px]">
+                    <label for="" class="font-semibold">Amount</label>
+                    <br>
+                    <input type="text" required placeholder="Enter amount to transfer" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="amount-trans" />
+                </div>
+                <div class="mt-[12px]">
+                    <label for="" class="font-semibold">Pin Number</label>
+                    <br>
+                    <input type="text" placeholder="Enter 4 digit pin number" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="pin-for-trans"/>
+                </div>
+                <button class="btn btn-primary mt-4 py-[14px]  w-full rounded-4xl bg-[#0874f2] font-semibold text-[20px]" id="btn-transfer">Send Now</button>
+            </form>
+        </div>
+        <div class="mb-[120px] form"  id="get-bonus-parent">
+            <h1 class="font-bold text-[18px] mb-4">Get Bonus</h1>
+            <form class="bg-white p-6 rounded-3xl ">
+                
+                <div class="mt-[12px]">
+                    <label for="" class="font-semibold">Enter Bonus Coupon</label>
+                    <br>
+                    <input type="text" required placeholder="Enter your coupon" class="input mt-[12px] rounded-4xl py-4 px-5 bg-[#f4f5f7] border-0 w-full" id="bonus-coupon" />
+                </div>
+                <button class="btn btn-primary mt-4 py-[14px]  w-full rounded-4xl bg-[#0874f2] font-semibold text-[20px]" id="btn-bonus">Get Bonus</button>
             </form>
         </div>
     </div>
