@@ -69,8 +69,8 @@ document.getElementById('btn-add-money').addEventListener('click',function(e){
         return;
     }
 
-    if(amount <= 0){
-        alert('Invalid Amount');
+    if(amount <= 0 || amount === "" || isNaN(amount) || Number(amount) <= 0){
+        alert('Please enter a valid amount');
         return;
     }
 
@@ -82,6 +82,7 @@ document.getElementById('btn-add-money').addEventListener('click',function(e){
     const availableBalance = getParseInnerText('available-balance');
 
     const totalNewBalance = amount+availableBalance;
+
     setBalance(totalNewBalance);
 
     const data = {
@@ -109,8 +110,9 @@ document.getElementById('btn-cash-out').addEventListener('click',function(e){
         return;
     }
 
-    if(amount <=0 || amount >availableBalance){
-        alert('Invalid amount');
+    if(amount <=0 || amount >availableBalance || amount === "" || isNaN(amount) || Number(amount) <= 0){
+        alert('Please provide a valid amount');
+        return;
     }
 
     if(pin != validPin){
@@ -147,8 +149,9 @@ document.getElementById('btn-transfer').addEventListener('click',function(e){
         return;
     }
 
-    if(amount < 500){
-        alert('Minimum amount to add is 500');
+    if(amount <=0 || amount >availableBalance || amount === "" || isNaN(amount) || Number(amount) <= 0){
+        alert('Please provide valid amount');
+        return;
     }
 
     if(pin != validPin){
@@ -198,6 +201,11 @@ document.getElementById('btn-pay-money').addEventListener('click',function(e){
 
     if(accountNumber.length < 11){
         alert('Please Provide a valid account number');
+        return;
+    }
+
+    if(amount <=0 || amount >availableBalance || amount === "" || isNaN(amount) || Number(amount) <= 0){
+        alert('Please provide valid amount')
         return;
     }
 
